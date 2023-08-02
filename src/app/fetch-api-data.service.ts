@@ -104,7 +104,7 @@ export class UserRegistrationService {
     );
   }
 
-  // Making the api call for adding a 'favorite movie' endpoint
+  // Making the api call for updating a user
   putUserUpdate(username: string): Observable<any> {
     const token = localStorage.getItem('token');
     return this.http.put(apiUrl + 'users/' + username, {headers: new HttpHeaders(
