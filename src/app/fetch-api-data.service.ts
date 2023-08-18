@@ -93,36 +93,64 @@ export class FetchApiDataService {
 
 
   // Making the api call for adding a 'favorite movie' endpoint
-  postFavoriteMovie(username: string, movieID: number): Observable<any> {
+  postFavoriteMovie(movieID: string): Observable<any> {
     const token = localStorage.getItem('token');
-    return this.http.post(apiUrl + 'users/' + username + 'movies/' + movieID, {headers: new HttpHeaders(
-      {
-        Authorization: 'Bearer ' + token,
-      })}).pipe(
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
+    const username = user.username;
+    user.favoriteMovies.push(movieID);
+    localStorage.setItem('user', JSON.stringify(user));
+
+    return this.http.post(apiUrl + 'users/' + username + '/movies/' + movieID, {},
+      {headers: new HttpHeaders(
+        {
+          Authorization: 'Bearer ' + token,
+        })}).pipe(
       map(this.extractResponseData),
       catchError(this.handleError)
     );
   }
 
   // Making the api call for updating a user
-  putUserUpdate(username: string): Observable<any> {
+  putUserUpdate(userDetails: any): Observable<any> {
     const token = localStorage.getItem('token');
-    return this.http.put(apiUrl + 'users/' + username, {headers: new HttpHeaders(
-      {
-        Authorization: 'Bearer ' + token,
-      })}).pipe(
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
+    return this.http.put(apiUrl + 'users/' + `${user.username}`, userDetails,
+      {headers: new HttpHeaders(
+        {
+          Authorization: 'Bearer ' + token,
+        })}).pipe(
       map(this.extractResponseData),
       catchError(this.handleError)
     );
   }
 
+  // Checks Local storage for favorite movies
+  isFavoriteMovie(movieID: string): boolean {
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
+    if (user) {
+      return user.favoriteMovies.includes(movieID);
+    }
+    return false;
+  }
+
   // Making the api call for removing a 'favorite movie' endpoint
-  deleteFavoriteMovie(username: string, movieID: number): Observable<any> {
+  deleteFavoriteMovie(movieID: string): Observable<any> {
     const token = localStorage.getItem('token');
-    return this.http.delete(apiUrl + 'users/' + username + 'movies/' + movieID, {headers: new HttpHeaders(
-      {
-        Authorization: 'Bearer ' + token,
-      })}).pipe(
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
+    const username = user.username;
+
+    const index = user.favoriteMovies.indexOf(movieID);
+    if (index >= 0) {
+      user.favoriteMovies.splice(index, 1);
+    }
+
+    localStorage.setItem('user', JSON.stringify(user));
+
+    return this.http.delete(apiUrl + 'users/' + username + '/movies/' + movieID, 
+      {headers: new HttpHeaders(
+        {
+          Authorization: 'Bearer ' + token,
+        })}).pipe(
       map(this.extractResponseData),
       catchError(this.handleError)
     );
@@ -131,10 +159,11 @@ export class FetchApiDataService {
   // Making the api call for deregistering a user endpoint
   deleteUser(username: string): Observable<any> {
     const token = localStorage.getItem('token');
-    return this.http.delete(apiUrl + 'users/' + username, {headers: new HttpHeaders(
-      {
-        Authorization: 'Bearer ' + token,
-      })}).pipe(
+    return this.http.delete(apiUrl + 'users/' + username, 
+      {headers: new HttpHeaders(
+        {
+          Authorization: 'Bearer ' + token,
+        })}).pipe(
       map(this.extractResponseData),
       catchError(this.handleError)
     );
@@ -151,7 +180,7 @@ export class FetchApiDataService {
     console.error('Some error occurred:', error.error.message);
     } else {
     console.error(
-        `Error Status code ${error.status}, ` +
+        `Error Status code: ${error.status}, ` +
         `Error body is: ${error.error}`);
     }
     return throwError(
