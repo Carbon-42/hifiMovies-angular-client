@@ -1,0 +1,136 @@
+.main-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  // height: 40%;
+}
+
+.profile {
+  align-items: right;
+}
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+hr {
+  margin: 30px 0;
+	border: 0;
+	height: 1px;
+	background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0)) ;
+}
+
+mat-progress-spinner {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -25px 0 0 -25px;
+}
+
+.movie-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.movie-grid-items {
+  margin-top: 10px;
+  margin-bottom: 15px;
+  place-self: center;
+  padding: 5px;
+
+}
+
+mat-card {
+  align-items: center;
+  min-width: 320px;
+  margin: 10px;
+  padding: 10px;
+}
+
+mat-card-title {
+  margin: 5px 0;
+}
+
+img {
+  margin-bottom: 10px;
+}
+
+mat-card-actions {
+  margin-bottom: 10px;
+  justify-content: center;
+}
+
+img {
+  max-height: 350px;
+  max-width: 350px;
+  object-fit: contain;
+}
+
+@media (max-width: 1000px) {
+  .movie-grid-items {
+      margin-top: 15px;
+      margin-bottom: 15px;
+      place-self: center;
+
+  }
+
+  mat-card {
+      align-items: center;
+      min-width: 320px;
+  }
+
+  img {
+      max-height: 350px;
+      max-width: 350px;
+      object-fit: contain;
+  }
+
+}
+
+@media screen and (max-width: 700px) {
+  .movie-grid-items {
+      margin-top: 15px;
+      margin-bottom: 15px;
+      place-self: center;
+
+  }
+
+  mat-card {
+      align-items: center;
+      min-width: 250px;
+  }
+
+  img {
+      max-height: 250px;
+      max-width: 250px;
+      object-fit: contain;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .movie-grid-items {
+      margin-top: 15px;
+      margin-bottom: 15px;
+      place-self: center;
+
+  }
+
+  mat-card {
+      align-items: center;
+      min-width: 300px;
+  }
+
+  img {
+      max-height: 300px;
+      max-width: 300px;
+      object-fit: contain;
+  }
+}
