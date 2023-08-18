@@ -1,0 +1,38 @@
+<app-navigation-bar></app-navigation-bar>
+<div class="main-page">
+  <h1>Profile</h1>
+  <mat-card>
+    <div class="profile">
+      <p >Username:  {{user.username}}</p>
+      <p>Email:  {{user.email}}</p>
+      <p>Birthday:  {{user.birthday | date:'longDate'}}</p>
+      <mat-card-actions>
+        <button 
+        class="button"
+        mat-raised-button
+        (click)="openeditUserDialog()"
+        color="primary"
+        >
+        Update
+        </button>
+      </mat-card-actions>
+    </div>
+  </mat-card>
+</div>
+<hr>
+<h2 style="text-align:center;">Favorite Movies</h2>
+  <div *ngIf="favMovies.length === 0" class="loading-container">
+    <mat-progress-spinner value="100" mode="indeterminate"></mat-progress-spinner>
+  </div>
+  <div class="movie-grid">
+    <div class="movie-grid-items" *ngFor="let movie of favMovies;" >
+      <div style="display: flex;">
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title>{{movie.title}}</mat-card-title>
+          </mat-card-header>
+          <img src="{{movie.image}}" alt= "{{movie.title}}" />
+        </mat-card>
+      </div>
+    </div>
+  </div>
