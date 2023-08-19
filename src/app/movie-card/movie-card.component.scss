@@ -13,6 +13,12 @@ mat-progress-spinner {
   margin: -25px 0 0 -25px;
 }
 
+.card-header {
+  margin: 10px 10px;
+  max-width: 350px;
+}
+
+
 .movie-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(300px, 1fr));
