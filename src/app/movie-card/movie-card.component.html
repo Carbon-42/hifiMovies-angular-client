@@ -9,8 +9,10 @@
 	<div style="display: flex;">
 		<mat-card>
 				<mat-card-header>
-				<mat-card-title>{{movie.title}}</mat-card-title>
+					<div class="card-header">
+						<mat-card-title>{{movie.title}}</mat-card-title>
 						<mat-card-subtitle>Directed by: {{movie.director.name}}</mat-card-subtitle>
+					</div>
 				</mat-card-header>
 				<img src="{{movie.image}}" alt= {{movie.title}} />
 				<mat-card-actions>
