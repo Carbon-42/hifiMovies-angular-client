@@ -13,18 +13,24 @@ export class WelcomePageComponent {
   title = 'myFlix-Angular-client';
 
   constructor(public dialog: MatDialog) { }
-// This is the function that will open the dialog when the signup button is clicked  
-openUserRegistrationDialog(): void {
+
+  /**
+   * opens the user registration dialog
+   */
+  openUserRegistrationDialog(): void {
     this.dialog.open(UserRegistrationFormComponent, {
-// Assigning the dialog a width
-    width: '280px'
+      // Assigning the dialog a width
+      width: '280px'
     });
   }
 
-openUserLoginDialog(): void {
+  /**
+   * opens the site login dialog
+   */
+  openUserLoginDialog(): void {
     this.dialog.open(UserLoginFormComponent, {
-// Assigning the dialog a width
-    width: '280px'
+      // Assigning the dialog a width
+      width: '280px'
     });
   }
 }

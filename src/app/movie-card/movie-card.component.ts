@@ -25,10 +25,17 @@ export class MovieCardComponent implements OnInit{
     this.getMovies();
   }
 
+  /**
+   * fetches the users info from the api
+   */
   getUser(): void {
     this.router.navigate(['user'])
   }
 
+  /**
+   * fetches all movies from the api
+   * @returns all movies
+   */
   getMovies(): void {
     this.fetchApiData.getAllMovies().subscribe((resp: any) => {
       this.movies = resp;
@@ -37,6 +44,10 @@ export class MovieCardComponent implements OnInit{
     });
   }
 
+  /**
+   * opens dialog with the movie's genre description
+   * @param genre 
+   */
   openGenreDialog(genre: any): void {
     this.dialog.open(MovieDetailDialogComponent, {
       data: {
@@ -46,6 +57,10 @@ export class MovieCardComponent implements OnInit{
     })
   }
 
+  /**
+   * opens dialog with the movie's director information
+   * @param director 
+   */
   openDirectorDialog(director: any): void {
     this.dialog.open(MovieDetailDialogComponent, {
       data: {
@@ -55,6 +70,10 @@ export class MovieCardComponent implements OnInit{
     })
   }
 
+  /**
+   * opens dialog with the movie's synopsis
+   * @param description 
+   */
   openSynopsisDialog(description: any): void {
     this.dialog.open(MovieDetailDialogComponent, {
       data: {
@@ -64,6 +83,10 @@ export class MovieCardComponent implements OnInit{
     })
   }
 
+  /**
+   * posts the selected movie id to the users database
+   * @param id 
+   */
   postFavorite(id: any): void {
     this.fetchApiData.postFavoriteMovie(id).subscribe((Response: any) => {
       this.snackbar.open('Added to Favorites', 'OK', {
@@ -72,10 +95,19 @@ export class MovieCardComponent implements OnInit{
     })
   }
 
+ /**
+   * checks if the movie id is in the user's favorite movie array
+   * @param id movie id
+   * @returns true or false
+   */
   isFavorite(id: any): boolean {
     return this.fetchApiData.isFavoriteMovie(id)
   }
 
+  /**
+   * deletes the selected movie id from the users database
+   * @param id 
+   */
   removeFavorite(id: any): void {
     this.fetchApiData.deleteFavoriteMovie(id).subscribe((Response: any) => {
       this.snackbar.open('Removed from Favorites', 'OK', {

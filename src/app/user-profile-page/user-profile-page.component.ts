@@ -22,15 +22,22 @@ export class UserProfilePageComponent {
     this.getUser();
   }
   
+  /**
+   * loads user information from localstorage
+   * fetches all movies from api and filters them for users favorites
+   */
   getUser(): void {
     this.user = JSON.parse(localStorage.getItem('user') || '{}')
     this.fetchApiData.getAllMovies().subscribe((resp: any) => {
       this.favMovies = resp.filter((m: {_id: any}) => this.user.favoriteMovies.indexOf(m._id) >= 0)
     })
     console.log('favMovies', this.favMovies)
-      return console.log(this.user)
+      // return console.log(this.user)
   }
 
+  /**
+   * opens dialog to edit user information
+   */
   openeditUserDialog(): void {
     this.dialog.open(UserEditDialogComponent, {
       // Assigning the dialog a width

@@ -17,15 +17,24 @@ export class NavigationBarComponent {
   constructor(
     private router: Router
   ) { }
-
+  
+  /**
+   * navigates to the main page with all movies
+   */
   getHome(): void {
     this.router.navigate(['movies'])
   }
 
+  /**
+   * navigates to the user profile page
+   */
   getProfile(): void {
     this.router.navigate(['user'])
   }
 
+  /**
+   * navigates to the welcome page and logs out user
+   */
   logOut(): void {
     this.router.navigate(['welcome'])
   }
