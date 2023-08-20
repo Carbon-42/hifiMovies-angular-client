@@ -57,11 +57,8 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/Carbon-42/hifiMovies-angular-client">
-    <img src="./public/meet-app-192.png" alt="Logo" width="80" height="80">
-  </a>
 
-<h3 align="center">A Time & Place</h3>
+<h3 align="center">HIFI Movies Angular Client</h3>
 <a href="https://carbon-42.github.io/hifiMovies-angular-client" target="_blank">Live URL</a>
 
   <p align="center">
